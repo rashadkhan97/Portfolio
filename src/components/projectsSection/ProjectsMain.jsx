@@ -1,5 +1,7 @@
+import { useState } from "react";
 import ProjectsText from "./ProjectsText";
 import SingleProject from "./SingleProject";
+import ModalSection from "./ModalSection";
 import { motion } from "framer-motion";
 import { fadeIn } from "../../framerMotion/variants";
 
@@ -8,33 +10,47 @@ const projects = [
     name: "Vacation of Africa",
     year: "Mar2022",
     align: "right",
-    image: "../../public/images/website-img-1.jpg",
+    image: "/images/website-img-1.jpg", // FIXED path for public folder
     link: "#",
+    description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, corporis. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perspiciatis rerum nisi facere fugit vero error similique dolorum maiores ullam. adipisicing elit. Perspiciatis rerum nisi facere fugit vero error similique dolorum maiores ullam."
   },
   {
     name: "Moola App",
     year: "Sept2022",
     align: "left",
-    image: "../../public/images/website-img-2.webp",
+    image: "/images/website-img-2.webp",
     link: "#",
+    description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, corporis. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perspiciatis rerum nisi facere fugit vero error similique dolorum maiores ullam. adipisicing elit. Perspiciatis rerum nisi facere fugit vero error similique dolorum maiores ullam."
   },
   {
     name: "Tourzania",
     year: "Jan2023",
     align: "right",
-    image: "../../public/images/website-img-3.jpg",
+    image: "/images/website-img-3.jpg",
     link: "#",
+    description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, corporis. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perspiciatis rerum nisi facere fugit vero error similique dolorum maiores ullam. adipisicing elit. Perspiciatis rerum nisi facere fugit vero error similique dolorum maiores ullam."
   },
   {
     name: "Bank of Luck",
     year: "May2024",
     align: "left",
-    image: "../../public/images/website-img-4.jpg",
+    image: "/images/website-img-4.jpg",
     link: "#",
+    description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, corporis. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perspiciatis rerum nisi facere fugit vero error similique dolorum maiores ullam. adipisicing elit. Perspiciatis rerum nisi facere fugit vero error similique dolorum maiores ullam."
   },
 ];
 
 const ProjectsMain = () => {
+  const [modalData, setModalData] = useState(null);
+
+  const handleViewClick = (data) => {
+    setModalData({ ...data, isOpen: true });
+  };
+
+  const closeModal = () => {
+    setModalData(null);
+  };
+
   return (
     <div id="projects" className="max-w-[1200px] mx-auto px-4">
       <motion.div
@@ -45,19 +61,22 @@ const ProjectsMain = () => {
       >
         <ProjectsText />
       </motion.div>
-      <div className="flex flex-col gap-20 max-w-[900px] mx-auto mt-12">
-        {projects.map((project, index) => {
-          return (
-            <SingleProject
-              key={index}
-              name={project.name}
-              year={project.year}
-              align={project.align}
-              image={project.image}
-            />
-          );
-        })}
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-10">
+        {projects.map((project, index) => (
+          <SingleProject
+            key={index}
+            {...project}
+            onViewClick={handleViewClick}
+          />
+        ))}
       </div>
+
+      <ModalSection
+        isOpen={!!modalData}
+        onClose={closeModal}
+        {...(modalData || {})}
+      />
     </div>
   );
 };

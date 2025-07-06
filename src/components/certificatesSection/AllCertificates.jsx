@@ -39,7 +39,7 @@ const certificates = [
 
 const AllCertificates = () => {
   return (
-    <div className="flex md:flex-row sm:flex-col items-center justify-between flex-wrap gap-6">
+    <div className="flex md:flex-row sm:flex-col items-center justify-between flex-wrap gap-3">
       {certificates.map((certificate, index) => (
         <>
           <SingleCertificate key={index} certificate={certificate} />
@@ -50,7 +50,7 @@ const AllCertificates = () => {
               whileInView="show"
               viewport={{ once: false, amount: 0.7 }}
             >
-              <FaArrowRightLong className="text-4xl text-orange lg:block sm:hidden" />
+              {/* <FaArrowRightLong className="text-4xl text-orange lg:block sm:hidden" /> */}
             </motion.div>
           ) : null}
         </>
