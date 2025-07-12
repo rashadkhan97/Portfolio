@@ -7,12 +7,12 @@ const FooterMain = () => {
       section: "about",
     },
     {
-      name: "Skills",
-      section: "skills",
+      name: "Certificates",
+      section: "certificates",
     },
     {
-      name: "Experience",
-      section: "experience",
+      name: "Skills",
+      section: "skills",
     },
     {
       name: "Projects",
