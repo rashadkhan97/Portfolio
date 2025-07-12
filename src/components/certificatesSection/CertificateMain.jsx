@@ -23,7 +23,7 @@ const CertificateMain = () => {
       >
         {/* <CertificateTop /> */}
       </motion.div>
-      <div className="w-full h-1 mt-4 bg-lightBrown lg:block sm:hidden"></div>
+      {/* <div className="w-full h-1 mt-4 bg-lightBrown lg:block sm:hidden"></div> */}
       <AllCertificates />  {/* UNCOMMENTED */}
     </div>
   );
